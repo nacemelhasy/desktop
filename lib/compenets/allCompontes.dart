@@ -293,15 +293,18 @@ Widget textA(context, text, {textAlign = TextAlign.start}) => Text(
       textAlign: textAlign,
       style: TextStyle(
         color: Color.fromARGB(255, 227, 203, 163),
-        fontFamily: 'aref',
+        fontFamily: 'cairo',
+        fontWeight: FontWeight.w500
       ),
     );
-Widget textAB(context, text, {textAlign = TextAlign.start}) => Text(
+Widget textB(context, text, {textAlign = TextAlign.start}) => Text(
       text,
+      overflow: TextOverflow.fade,
       textAlign: textAlign,
       style: TextStyle(
-        color: defautlColor,
-        fontFamily: 'aref',
+        color: Colors.black,
+        fontFamily: 'cairo',
+        fontWeight: FontWeight.w500
       ),
     );
 
