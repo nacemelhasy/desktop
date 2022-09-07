@@ -1,7 +1,10 @@
 import 'package:desktop/compenets/allCompontes.dart';
 import 'package:desktop/compenets/defaultCS.dart';
+import 'package:desktop/pages/members.dart';
+import 'package:desktop/pages/table_dinner.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -20,16 +23,15 @@ class Home extends StatelessWidget {
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width * 0.22,
                 decoration: BoxDecoration(
-                    color: defautlColor,
-                    // border: Border.all(color: Colors.white, width: 4),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Color.fromARGB(85, 0, 0, 0),
-                          blurRadius: 4,
-                          offset: Offset(-6, 4))
-                    ],
-                
-                    ),
+                  color: defautlColor,
+                  // border: Border.all(color: Colors.white, width: 4),
+                  boxShadow: const [
+                    BoxShadow(
+                        color: Color.fromARGB(85, 0, 0, 0),
+                        blurRadius: 4,
+                        offset: Offset(-6, 4))
+                  ],
+                ),
                 child: Column(
                   children: [
                     SizedBox(
@@ -43,36 +45,58 @@ class Home extends StatelessWidget {
                     SizedBox(
                       height: height(context) * 0.1,
                     ),
-              // one rectangle
-            InkWell(
-              onTap: (){},
-              child: rectangle(context, title: 'جدول العشوات', shape:const Icon(Icons.calendar_month,color: Colors.black,))),
-              SizedBox(
+                    // one rectangle
+                    InkWell(
+                        onTap: () {
+                          Get.to(() => Table_dinner());
+                        },
+                        child: rectangle(context,
+                            title: 'جدول العشوات',
+                            shape: const Icon(
+                              Icons.calendar_month,
+                              color: Colors.black,
+                            ))),
+                    SizedBox(
                       height: height(context) * 0.03,
                     ),
-              // two rectangle
-              InkWell(
-              onTap: (){},
-                child: rectangle(context, title: 'أعضاء الجمعية', shape:const Icon(Icons.people,color: Colors.black,))),
-              SizedBox(
+                    // two rectangle
+                    InkWell(
+                        onTap: () {
+                          Get.to(()=>Members());
+                        },
+                        child: rectangle(context,
+                            title: 'أعضاء الجمعية',
+                            shape: const Icon(
+                              Icons.people,
+                              color: Colors.black,
+                            ))),
+                    SizedBox(
                       height: height(context) * 0.03,
                     ),
-              // three rectangle
-              InkWell(
-              onTap: (){},
-                
-                child: rectangle(context, title: 'قرعة العشوات', shape:const Icon(Icons.table_chart,color: Colors.black,))),
-              SizedBox(
+                    // three rectangle
+                    InkWell(
+                        onTap: () {},
+                        child: rectangle(context,
+                            title: 'قرعة العشوات',
+                            shape: const Icon(
+                              Icons.table_chart,
+                              color: Colors.black,
+                            ))),
+                    SizedBox(
                       height: height(context) * 0.03,
                     ),
-              // four rectangle
-              InkWell(
-              onTap: (){},
-                
-                child: rectangle(context, title: 'جدول الأقساط', shape:const Icon(Icons.request_quote_rounded,color: Colors.black,))),
-             
-             const Spacer(),
-                 SizedBox(
+                    // four rectangle
+                    InkWell(
+                        onTap: () {},
+                        child: rectangle(context,
+                            title: 'جدول الأقساط',
+                            shape: const Icon(
+                              Icons.request_quote_rounded,
+                              color: Colors.black,
+                            ))),
+
+                    const Spacer(),
+                    SizedBox(
                       height: height(context) * 0.1,
                       width: width(context) * 0.2,
                       child: fitted(textA(context, 'منظومة الباش مهندسين')),
@@ -189,10 +213,8 @@ Widget square(context,
 }
 
 // for rectange in aside
-Widget rectangle(context,{
-  required String title,
-  required Icon shape
-}) => Container(
+Widget rectangle(context, {required String title, required Icon shape}) =>
+    Container(
       height: height(context) * 0.09,
       width: width(context) * 0.21,
       decoration: BoxDecoration(
@@ -208,10 +230,8 @@ Widget rectangle(context,{
           ),
           Expanded(
             flex: 1,
-            child: fitted( Padding(
-              padding:const EdgeInsets.all(3.0),
-              child: shape
-            )),
+            child: fitted(
+                Padding(padding: const EdgeInsets.all(3.0), child: shape)),
           )
         ],
       ),

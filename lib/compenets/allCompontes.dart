@@ -100,8 +100,7 @@ Widget cDropdownButton(context,
     );
 ///////////////////////////////////////////////// Awesem dialog //////////////////////////////////////////////////////////////////////
 awesome(BuildContext context,
-        {
-          Function? btnOkOnPress,
+        {Function? btnOkOnPress,
         Function? btnCancelOnPress,
         String btnCancelText = 'الغاء',
         String btnOkText = 'موافق',
@@ -113,10 +112,10 @@ awesome(BuildContext context,
         Color btnOkColor = Colors.blue,
         Color btnCancelColor = Colors.blue,
         Duration? autoHide,
-         Color dialogBackgroundColor = const  Color.fromARGB(255, 71, 60, 56),
+        Color dialogBackgroundColor = const Color.fromARGB(255, 71, 60, 56),
         bool dismissOnTouchOutside = true}) =>
     AwesomeDialog(
-      dialogBackgroundColor: dialogBackgroundColor,
+        dialogBackgroundColor: dialogBackgroundColor,
         dismissOnTouchOutside: dismissOnTouchOutside,
         autoHide: autoHide,
         buttonsTextStyle: Theme.of(context).textTheme.bodyText1,
@@ -124,10 +123,7 @@ awesome(BuildContext context,
         btnCancelColor: defautlColor,
         btnCancelText: btnCancelText,
         btnOkText: btnOkText,
-        borderSide: BorderSide(
-          color: defautlColor,
-          width: 5
-        ),
+        borderSide: BorderSide(color: defautlColor, width: 5),
         // body: ,//طبعا البدي يقبل الويدت الي تبيها فيه عادي
         context: context, //
         dialogType:
@@ -245,13 +241,11 @@ Widget constrainedBox({
   double minWidth = 0.0,
 }) =>
     ConstrainedBox(
-
       constraints: BoxConstraints(
         maxHeight: maxHeight,
         maxWidth: maxWidth,
         minHeight: minHeight,
         minWidth: minWidth,
-        
       ),
       child: child,
     );
@@ -277,11 +271,9 @@ ShowSnackBar(context, text) {
 // for text with style body 1
 
 Widget text(context, text, {textAlign = TextAlign.start}) => Text(text,
-    textAlign: textAlign, style: TextStyle(
-      fontFamily: 'cairo',
-      color: defautlColor,
-      fontWeight: FontWeight.w500
-    ));
+    textAlign: textAlign,
+    style: TextStyle(
+        fontFamily: 'cairo', color: defautlColor, fontWeight: FontWeight.w500));
 // for text with style body 1
 Widget textW(context, text, {textAlign = TextAlign.start}) => Text(text,
     textAlign: textAlign,
@@ -292,20 +284,25 @@ Widget textA(context, text, {textAlign = TextAlign.start}) => Text(
       overflow: TextOverflow.fade,
       textAlign: textAlign,
       style: TextStyle(
-        color: Color.fromARGB(255, 227, 203, 163),
-        fontFamily: 'cairo',
-        fontWeight: FontWeight.w500
-      ),
+          color: Colors.white,
+          fontFamily: 'cairo',
+          fontWeight: FontWeight.w500),
     );
-Widget textB(context, text, {textAlign = TextAlign.start}) => Text(
+Widget textB(
+  context,
+  text, {
+  textAlign = TextAlign.start,
+  double font = 15,
+}) =>
+    Text(
       text,
       overflow: TextOverflow.fade,
       textAlign: textAlign,
       style: TextStyle(
-        color: Colors.black,
-        fontFamily: 'cairo',
-        fontWeight: FontWeight.w500
-      ),
+          color: Colors.black,
+          fontFamily: 'cairo',
+          fontWeight: FontWeight.w500,
+          fontSize: font),
     );
 
 Widget textN(context, text, {textAlign = TextAlign.start}) => Text(
@@ -334,7 +331,8 @@ Widget textShowT(
     Text(
       text,
       textAlign: textAlign,
-      style: TextStyle(color: defautlColor2, fontFamily: 'noto', fontSize: size),
+      style:
+          TextStyle(color: defautlColor2, fontFamily: 'noto', fontSize: size),
     );
 Widget textShowTI(
   context,
