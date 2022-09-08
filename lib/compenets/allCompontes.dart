@@ -99,7 +99,7 @@ Widget cDropdownButton(context,
       onChanged: onChanged,
     );
 ///////////////////////////////////////////////// Awesem dialog //////////////////////////////////////////////////////////////////////
-awesome(BuildContext context,
+awesome(BuildContext context ,
         {Function? btnOkOnPress,
         Function? btnCancelOnPress,
         String btnCancelText = 'الغاء',
@@ -115,6 +115,7 @@ awesome(BuildContext context,
         Color dialogBackgroundColor = const Color.fromARGB(255, 71, 60, 56),
         bool dismissOnTouchOutside = true}) =>
     AwesomeDialog(
+      
         dialogBackgroundColor: dialogBackgroundColor,
         dismissOnTouchOutside: dismissOnTouchOutside,
         autoHide: autoHide,

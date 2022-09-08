@@ -1,8 +1,10 @@
 import 'package:desktop/Home.dart';
+import 'package:desktop/compenets/GetState.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
+  Get.put(Database());
   runApp(const MyApp());
 }
 
