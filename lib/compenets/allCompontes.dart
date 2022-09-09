@@ -284,7 +284,7 @@ Widget textA(context, text, {textAlign = TextAlign.start}) => Text(
       text,
       overflow: TextOverflow.fade,
       textAlign: textAlign,
-      style: TextStyle(
+      style:const TextStyle(
           color: Colors.white,
           fontFamily: 'cairo',
           fontWeight: FontWeight.w500),

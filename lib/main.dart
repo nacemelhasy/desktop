@@ -2,8 +2,11 @@ import 'package:desktop/Home.dart';
 import 'package:desktop/compenets/GetState.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+late SharedPreferences pref ;
+void main()async {
+  pref = await SharedPreferences.getInstance();
   Get.put(Database());
   runApp(const MyApp());
 }

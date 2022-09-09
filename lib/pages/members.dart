@@ -38,7 +38,6 @@ class Members extends GetView<Database> {
                                 itemCount: controller.members.length,
                                 itemBuilder: (BuildContext context, int i) {
                                   if (controller.members.isNotEmpty) {
-                                    print('if');
                                     return Dismissible(
                                         key: UniqueKey(),
                                         onDismissed: (_) {

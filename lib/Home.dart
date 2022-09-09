@@ -1,12 +1,14 @@
+import 'package:desktop/compenets/GetState.dart';
 import 'package:desktop/compenets/allCompontes.dart';
 import 'package:desktop/compenets/defaultCS.dart';
 import 'package:desktop/pages/members.dart';
+import 'package:desktop/pages/rando.dart';
 import 'package:desktop/pages/table_dinner.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Home extends StatelessWidget {
+class Home extends GetView<Database> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -75,7 +77,9 @@ class Home extends StatelessWidget {
                     ),
                     // three rectangle
                     InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(()=>Random());
+                        },
                         child: rectangle(context,
                             title: 'قرعة العشوات',
                             shape: const Icon(
@@ -136,7 +140,7 @@ class Home extends StatelessWidget {
                   SizedBox(
                     height: height(context) * 0.7,
                     width: width(context) * 0.4,
-                    child: GridView(
+                    child: GetBuilder<Database>(builder: (_)=>GridView(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       gridDelegate:
@@ -149,7 +153,7 @@ class Home extends StatelessWidget {
                         // one square
                         square(context,
                             title: 'عدد الأعضاء',
-                            subTitle: '17',
+                            subTitle: controller.members.length.toString(),
                             shape: const Icon(Icons.engineering)),
                         // two square
                         square(context,
@@ -169,7 +173,7 @@ class Home extends StatelessWidget {
                             subTitle: '70 دل',
                             shape: const Icon(Icons.money_off_rounded))
                       ],
-                    ),
+                    ),)
                   )
                 ],
               )
