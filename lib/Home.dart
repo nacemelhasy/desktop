@@ -4,6 +4,7 @@ import 'package:desktop/compenets/defaultCS.dart';
 import 'package:desktop/pages/members.dart';
 import 'package:desktop/pages/rando.dart';
 import 'package:desktop/pages/table_dinner.dart';
+import 'package:desktop/pages/installment.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -64,7 +65,7 @@ class Home extends GetView<Database> {
                     // two rectangle
                     InkWell(
                         onTap: () {
-                          Get.to(()=>Members());
+                          Get.to(() => Members());
                         },
                         child: rectangle(context,
                             title: 'أعضاء الجمعية',
@@ -78,7 +79,7 @@ class Home extends GetView<Database> {
                     // three rectangle
                     InkWell(
                         onTap: () {
-                          Get.to(()=>Random());
+                          Get.to(() => Random());
                         },
                         child: rectangle(context,
                             title: 'قرعة العشوات',
@@ -91,7 +92,9 @@ class Home extends GetView<Database> {
                     ),
                     // four rectangle
                     InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(() => Installments());
+                        },
                         child: rectangle(context,
                             title: 'جدول الأقساط',
                             shape: const Icon(
@@ -138,43 +141,44 @@ class Home extends GetView<Database> {
 
 // for four square
                   SizedBox(
-                    height: height(context) * 0.7,
-                    width: width(context) * 0.4,
-                    child: GetBuilder<Database>(builder: (_)=>GridView(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: 1.17,
-                              crossAxisSpacing: 20,
-                              mainAxisSpacing: 10),
-                      children: [
-                        // one square
-                        square(context,
-                            title: 'عدد الأعضاء',
-                            subTitle: controller.members.length.toString(),
-                            shape: const Icon(Icons.engineering)),
-                        // two square
-                        square(context,
-                            title: 'إجمالي القيمة المالية',
-                            subTitle: '1250 دل',
-                            shape: const Icon(Icons.attach_money_sharp)),
+                      height: height(context) * 0.7,
+                      width: width(context) * 0.4,
+                      child: GetBuilder<Database>(
+                        builder: (_) => GridView(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  childAspectRatio: 1.17,
+                                  crossAxisSpacing: 20,
+                                  mainAxisSpacing: 10),
+                          children: [
+                            // one square
+                            square(context,
+                                title: 'عدد الأعضاء',
+                                subTitle: controller.members.length.toString(),
+                                shape: const Icon(Icons.engineering)),
+                            // two square
+                            square(context,
+                                title: 'إجمالي القيمة المالية',
+                                subTitle: '1250 دل',
+                                shape: const Icon(Icons.attach_money_sharp)),
 
-                        // three square
-                        square(context,
-                            title: 'عدد الاستراحات',
-                            subTitle: '3',
-                            shape: const Icon(Icons.home)),
+                            // three square
+                            square(context,
+                                title: 'عدد الاستراحات',
+                                subTitle: '3',
+                                shape: const Icon(Icons.home)),
 
-                        // four square
-                        square(context,
-                            title: 'المبلغ الناقص',
-                            subTitle: '70 دل',
-                            shape: const Icon(Icons.money_off_rounded))
-                      ],
-                    ),)
-                  )
+                            // four square
+                            square(context,
+                                title: 'المبلغ الناقص',
+                                subTitle: '70 دل',
+                                shape: const Icon(Icons.money_off_rounded))
+                          ],
+                        ),
+                      ))
                 ],
               )
             ],

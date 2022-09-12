@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:desktop/compenets/GetState.dart';
 import 'package:desktop/compenets/allCompontes.dart';
 import 'package:desktop/compenets/defaultCS.dart';
+import 'package:desktop/pages/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -38,16 +39,23 @@ class Members extends GetView<Database> {
                                 itemCount: controller.members.length,
                                 itemBuilder: (BuildContext context, int i) {
                                   if (controller.members.isNotEmpty) {
-                                    return Dismissible(
-                                        key: UniqueKey(),
-                                        onDismissed: (_) {
-                                          controller.deleteMember(
-                                              controller.members[i]['name']);
-                                        },
-                                        child: data(context,
-                                            name: controller.members[i]['name'],
-                                            dep: controller.members[i]
-                                                ['department']));
+                                    return InkWell(
+                                      onTap: (){
+                                        Get.to(()=>Profile(
+                                          index: i,
+                                        ));
+                                      },
+                                      child: Dismissible(
+                                          key: UniqueKey(),
+                                          onDismissed: (_) {
+                                            controller.deleteMember(
+                                                controller.members[i]['name']);
+                                          },
+                                          child: data(context,
+                                              name: controller.members[i]['name'],
+                                              dep: controller.members[i]
+                                                  ['department'])),
+                                    );
                                   }
 
                                   return indicator();
@@ -154,12 +162,15 @@ class Members extends GetView<Database> {
                                                             if (key
                                                                 .currentState!
                                                                 .validate()) {
+                                                               
+                                                                     
                                                               key.currentState!
                                                                   .save();
                                                               Map temp = {
                                                                 'name': name,
                                                                 'department':
                                                                     department,
+                                                                    'monthly installments' : controller.monthly_installments
                                                               };
                                                               controller
                                                                   .addMember(
