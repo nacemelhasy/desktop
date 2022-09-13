@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import '../compenets/allCompontes.dart';
 import '../compenets/defaultCS.dart';
 
-class Random extends GetView<Database> {
+class Shuflle extends GetView<Database> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Database>(
@@ -39,7 +39,7 @@ class Random extends GetView<Database> {
                         ])),
 
                     // body
-                    controller.random
+                    controller.shuffled
                         ? ListView.builder(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),

@@ -2,7 +2,7 @@ import 'package:desktop/compenets/GetState.dart';
 import 'package:desktop/compenets/allCompontes.dart';
 import 'package:desktop/compenets/defaultCS.dart';
 import 'package:desktop/pages/members.dart';
-import 'package:desktop/pages/rando.dart';
+import 'package:desktop/pages/shuffle.dart';
 import 'package:desktop/pages/table_dinner.dart';
 import 'package:desktop/pages/installment.dart';
 import 'package:flutter/cupertino.dart';
@@ -79,7 +79,7 @@ class Home extends GetView<Database> {
                     // three rectangle
                     InkWell(
                         onTap: () {
-                          Get.to(() => Random());
+                          Get.to(() => Shuflle());
                         },
                         child: rectangle(context,
                             title: 'قرعة العشوات',

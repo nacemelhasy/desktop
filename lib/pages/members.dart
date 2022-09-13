@@ -41,9 +41,29 @@ class Members extends GetView<Database> {
                                   if (controller.members.isNotEmpty) {
                                     return InkWell(
                                       onTap: (){
+                                    if(controller.shuffled){
                                         Get.to(()=>Profile(
                                           index: i,
-                                        ));
+                                        ));}else{
+                                               awesome(context,
+                                            dialogType: DialogType.ERROR,
+                                            dialogBackgroundColor: Colors.white,
+                                            body: SizedBox(
+                                              height: height(context) * 0.1,
+                                              child: Column(
+                                                children: [
+                                                  SizedBox(
+                                                    height:
+                                                        height(context) * 0.1,
+                                                    width: width(context),
+                                                    child: fitted(textB(context,
+                                                        'الرجاء قم بالقرعة أولا')),
+                                                  ),
+                                                
+                                                ],
+                                              ),
+                                            ));
+                                        }
                                       },
                                       child: Dismissible(
                                           key: UniqueKey(),
@@ -170,12 +190,13 @@ class Members extends GetView<Database> {
                                                                 'name': name,
                                                                 'department':
                                                                     department,
-                                                                    'monthly installments' : controller.monthly_installments
+                                                                  
                                                               };
                                                               controller
                                                                   .addMember(
                                                                       temp);
                                                               Get.back();
+                                                          
                                                             }
                                                           },
                                                           icon: const Icon(

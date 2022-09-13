@@ -10,30 +10,73 @@ class Database extends GetxController {
   // ignore: non_constant_identifier_names
   List monthly_installments = [];
   String decDate = '';
-  bool random = false;
+  bool shuffled = false;
   @override
   void onInit() {
-    
     if (pref.containsKey('members')) {
       members = jsonDecode(pref.getString('members').toString());
     }
+
     if (pref.containsKey('tableDinner')) {
       tableDinner = jsonDecode(pref.getString('tableDinner').toString());
-      random = true;
+      shuffled = true;
     }
-    members.forEach((e) {
-      
-      monthly_installments.add({'${e['date']}': false});
-    });
-    
+    if (pref.containsKey('monthly_installments')) {
+      monthly_installments =
+          jsonDecode(pref.getString('monthly_installments').toString());
+    }
     super.onInit();
   }
 
   void addMember(Map m) {
-    members.add(m);
-    decDate = jsonEncode(members);
-    print(decDate);
-    pref.setString('members', decDate);
+    if (!shuffled) {
+      members.add(m);
+      decDate = jsonEncode(members);
+      pref.setString('members', decDate);
+    } else {
+      ///////////////// first step update table dinner
+      int year = int.parse(
+          tableDinner[tableDinner.length - 1]['date'].toString().split('/')[0]);
+      int month = tableDinner[tableDinner.length - 1]['month'];
+      if (month == 12) {
+        year++;
+        month = 1;
+      } else {
+        month++;
+      }
+      tableDinner
+          .add({'name': m['name'], 'month': month, 'date': '$year/$month/15'});
+
+////////// second step update monthly installment
+      monthly_installments.add({
+        // for calender
+        '$year/$month': false
+      });
+
+      // for add a new montly insatllment for all members
+      for ( int i =0 ;i<members.length ;i++) {
+        members[i]['monthly_installments'].add({
+          // for calender
+          '$year/$month': false
+        });
+
+      }
+
+      m.addEntries({
+        MapEntry('monthly_installments', monthly_installments)
+      }); // for add montly installment for new memner
+      members.add(m);
+      decDate = jsonEncode(members);
+      pref.setString('members', decDate);
+
+        String decTableDinner =
+        jsonEncode(tableDinner); // encode data for save in local database
+    String decMonthly_installments = jsonEncode(
+        monthly_installments); // encode data for save in local database
+    pref.setString('tableDinner', decTableDinner);
+    pref.setString('monthly_installments', decMonthly_installments);
+       update();
+    }
     update();
   }
 
@@ -49,9 +92,9 @@ class Database extends GetxController {
     }
   }
 
-  // randomation
+  // shuffled
   void prepareTable() {
-    members.shuffle(); // random
+    members.shuffle(); // shuffled
     int month = 11;
     int year = 2022;
     for (int i = 0; i < members.length; i++) {
@@ -60,6 +103,11 @@ class Database extends GetxController {
         'month': month,
         'date': '$year/$month/15'
       });
+      monthly_installments.add({
+        // for calender
+        '$year/$month': false
+      });
+
       if (month == 12) {
         year++;
         month = 1;
@@ -68,8 +116,26 @@ class Database extends GetxController {
       }
     }
 
-    String decTableDinner = jsonEncode(tableDinner);
+    String decTableDinner =
+        jsonEncode(tableDinner); // encode data for save in local database
+    String decMonthly_installments = jsonEncode(
+        monthly_installments); // encode data for save in local database
     pref.setString('tableDinner', decTableDinner);
-    random = true;
+    pref.setString('monthly_installments', decMonthly_installments);
+
+    // for update monthly installments for all members in engineering system
+
+    for (Map t in members) {
+      t.addEntries({MapEntry('monthly_installments', monthly_installments)});
+    }
+    decDate = jsonEncode(members);
+    pref.setString('members', decDate);
+    shuffled = true; // for knowing is it shuffled make or not
+  }
+
+  // for check value
+  void ckecked() {
+    decDate = jsonEncode(members);
+    pref.setString('members', decDate);
   }
 }
